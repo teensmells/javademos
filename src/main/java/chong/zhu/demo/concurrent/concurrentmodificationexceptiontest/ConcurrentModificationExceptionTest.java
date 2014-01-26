@@ -4,26 +4,46 @@
  * such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered
  * into with dianping.com.
  */
-package chong.zhu.demo;
+package chong.zhu.demo.concurrent.concurrentmodificationexceptiontest;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
- * TODO Comment of ConcurrentModification
+ * use different collection to test concurrentModificationException in multi and single thread
  * 
  * @author chong.zhu
  */
 public class ConcurrentModificationExceptionTest {
 
     public static void main(String[] args) {
-        ListTest.addElements();
+        testWithConcurrent();
+        testWithSingleThread();
+    }
+
+    /**
+     * 
+     */
+    private static void testWithSingleThread() {
+        MyList.addElements();
+        Iterator<String> it = MyList.testList.iterator();
+        while (it.hasNext()) {
+            String key = it.next();
+            if (key.equals("3")) {
+                MyList.delElement("3");
+            }
+        }
+    }
+
+    /**
+     * 
+     */
+    private static void testWithConcurrent() {
+        MyList.addElements();
         Thread thread1 = new Thread(new Runnable() {
 
             @Override
             public void run() {
-                ListTest.iteratorList();
+                MyList.iteratorList();
             }
         });
 
@@ -31,7 +51,7 @@ public class ConcurrentModificationExceptionTest {
 
             @Override
             public void run() {
-                ListTest.delElements(3);
+                MyList.delElement("3");
             }
         });
 

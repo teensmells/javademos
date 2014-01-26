@@ -4,24 +4,20 @@
  * such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered
  * into with dianping.com.
  */
-package chong.zhu.demo;
+package chong.zhu.demo.concurrent.concurrentmodificationexceptiontest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * TODO Comment of ListTest
  * 
  * @author chong.zhu
  */
-public class ListTest {
+public class MyList {
 
-    public static List<String> testList = new CopyOnWriteArrayList<String>();
+    public static List<String> testList = new ArrayList<String>();
 
     public static void addElements() {
         testList.add("1");
@@ -34,7 +30,7 @@ public class ListTest {
         testList.add("8");
     }
 
-    public static void delElements(int key) {
+    public static void delElement(String key) {
         System.out.println("delete:" + testList.remove(key));
     }
 

@@ -4,7 +4,7 @@
  * such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered
  * into with dianping.com.
  */
-package chong.zhu.demo.concurrent.concurrentmodificationexceptiontest;
+package chong.zhu.demo.concurrent.concurrentmodificationexception;
 
 import java.util.Iterator;
 
@@ -17,19 +17,19 @@ public class ConcurrentModificationExceptionTest {
 
     public static void main(String[] args) {
         testWithConcurrent();
-        testWithSingleThread();
+        // testWithSingleThread();
     }
 
     /**
      * 
      */
     private static void testWithSingleThread() {
-        MyList.addElements();
-        Iterator<String> it = MyList.testList.iterator();
+        MyConcurrentSafeList.addElements();
+        Iterator<String> it = MyConcurrentSafeList.testList.iterator();
         while (it.hasNext()) {
             String key = it.next();
             if (key.equals("3")) {
-                MyList.delElement("3");
+                MyConcurrentSafeList.delElement(3);
             }
         }
     }
@@ -38,12 +38,12 @@ public class ConcurrentModificationExceptionTest {
      * 
      */
     private static void testWithConcurrent() {
-        MyList.addElements();
+        MyConcurrentSafeList.addElements();
         Thread thread1 = new Thread(new Runnable() {
 
             @Override
             public void run() {
-                MyList.iteratorList();
+                MyConcurrentSafeList.iteratorList();
             }
         });
 
@@ -51,7 +51,7 @@ public class ConcurrentModificationExceptionTest {
 
             @Override
             public void run() {
-                MyList.delElement("3");
+                MyConcurrentSafeList.delElement(3);
             }
         });
 

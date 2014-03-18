@@ -4,20 +4,20 @@
  * disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement
  * you entered into with dianping.com.
  */
-package chong.zhu.demo.concurrent.concurrentmodificationexceptiontest;
+package chong.zhu.demo.concurrent.concurrentmodificationexception;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * TODO Comment of MyConcurrentSafeMap
+ * TODO Comment of MyMap
  * 
  * @author chong.zhu
  */
-public class MyConcurrentSafeMap {
+public class MyMap {
 
-    public static Map<Integer, String> testMap = new ConcurrentHashMap<Integer, String>();
+    public static Map<Integer, String> testMap = new HashMap<Integer, String>();
 
     public static void addElements() {
         testMap.put(1, "1");

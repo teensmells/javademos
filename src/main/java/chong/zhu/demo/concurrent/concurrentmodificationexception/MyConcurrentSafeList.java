@@ -4,7 +4,7 @@
  * disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement
  * you entered into with dianping.com.
  */
-package chong.zhu.demo.concurrent.concurrentmodificationexceptiontest;
+package chong.zhu.demo.concurrent.concurrentmodificationexception;
 
 import java.util.Iterator;
 import java.util.List;
